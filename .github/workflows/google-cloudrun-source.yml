@@ -43,6 +43,7 @@
 #   Cloud Run IAM permissions           - https://cloud.google.com/run/docs/deploying-source-code#permissions_required_to_deploy
 #   Cloud Run builds from source        - https://cloud.google.com/run/docs/deploying-source-code
 #   Principle of least privilege        - https://cloud.google.com/blog/products/identity-security/dont-get-pwned-practicing-the-principle-of-least-privilege
+export WORKLOAD_IDENTITY_POOL_ID="projects/694656778053/locations/global/workloadIdentityPools/my-pool"
 
 name: Deploy to Cloud Run from Source
 
@@ -51,9 +52,9 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: YOUR_PROJECT_ID # TODO: update Google Cloud project id
-  SERVICE: YOUR_SERVICE_NAME # TODO: update Cloud Run service name
-  REGION: YOUR_SERVICE_REGION # TODO: update Cloud Run service region
+  PROJECT_ID: 'optimal-chimera-388113'
+  SERVICE: YOUR_SERVICE_NAME
+  REGION: 'us-central1'
 
 jobs:
   deploy:
@@ -71,8 +72,8 @@ jobs:
         id: auth
         uses: 'google-github-actions/auth@v0'
         with:
-          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' # e.g. - my-service-account@my-project.iam.gserviceaccount.com
+          workload_identity_provider: 'projects/694656778053/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
+          service_account: 'my-service-account@optimal-chimera-388113.iam.gserviceaccount.com' # e.g. - my-service-account@my-project.iam.gserviceaccount.com
 
       # NOTE: Alternative option - authentication via credentials json
       # - name: Google Auth
