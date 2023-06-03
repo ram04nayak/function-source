@@ -53,7 +53,7 @@ on:
 
 env:
   PROJECT_ID: 'optimal-chimera-388113'
-  SERVICE: 'hello_world'
+  SERVICE: 'hello-world'
   REGION: 'us-central1'
 
 jobs:
