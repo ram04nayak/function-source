@@ -43,7 +43,7 @@
 #   Cloud Run IAM permissions           - https://cloud.google.com/run/docs/deploying-source-code#permissions_required_to_deploy
 #   Cloud Run builds from source        - https://cloud.google.com/run/docs/deploying-source-code
 #   Principle of least privilege        - https://cloud.google.com/blog/products/identity-security/dont-get-pwned-practicing-the-principle-of-least-privilege
-export WORKLOAD_IDENTITY_POOL_ID="projects/694656778053/locations/global/workloadIdentityPools/my-pool"
+#WORKLOAD_IDENTITY_POOL_ID="projects/694656778053/locations/global/workloadIdentityPools/my-pool"
 
 name: Deploy to Cloud Run from Source
 
