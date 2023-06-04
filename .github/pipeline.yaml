@@ -1,0 +1,39 @@
+name: Deploy Cloud Function
+on:
+  push:
+    branches: [ master ]
+env:
+  PROJECT: optimal-chimera-388113
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+   
+      - name: Setup GCP Service Account
+        uses: google-github-actions/auth@v1
+        with:          
+          credentials_json : ${{secrets.GCP_SA}}
+          project_id: ${{env.PROJECT}}
+          uses: google-github-actions/setup-gcloud@v1
+          export_default_credentials: true
+
+      - name: deploy cloud function
+        id: deploy
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: function-1
+          runtime: python38
+          project_id: optimal-chimera-388113
+          entry_point: hello_world
+          timeout: 250
+
+      - name: make the url aunthenticated
+        run: |
+          gcloud functions add-iam-policy-binding my-service-account --member="allUsers" --role="roles/cloudfunctions.invoker"
+
+      - name: test the url
+        run: curl "${{ steps.deploy.outputs.url }}"
