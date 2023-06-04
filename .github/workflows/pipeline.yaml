@@ -33,7 +33,7 @@ jobs:
 
       - name: make the url aunthenticated
         run: |
-          gcloud functions add-iam-policy-binding my-service-account --member="allUsers" --role="roles/cloudfunctions.invoker"
+          gcloud functions add-iam-policy-binding optimal-chimera-388113 --member="allUsers" --role="roles/cloudfunctions.invoker"
 
       - name: test the url
         run: curl "${{ steps.deploy.outputs.url }}"
