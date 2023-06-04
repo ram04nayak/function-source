@@ -1,7 +1,7 @@
 name: Deploy Cloud Function
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 env:
   PROJECT: optimal-chimera-388113
 
